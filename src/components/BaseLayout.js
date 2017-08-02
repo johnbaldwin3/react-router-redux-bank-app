@@ -20,9 +20,7 @@ export default class BaseLayout extends Component {
               <li className="nav-item">
                 <NavLink activeClassName="selected" className="nav-link" to="/users" >Users</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink activeClassName="selected" className="nav-link" to="" >Disabled</NavLink>
-              </li>
+              
             </ul>
 
             </div>

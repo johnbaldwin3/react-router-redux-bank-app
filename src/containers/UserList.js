@@ -3,14 +3,13 @@ import React, {Component} from 'react';
 //Redux imports
 import {connect} from 'react-redux';
 import {selectUser} from '../actions/index.js'
-import userList from '../data/userArray';
 import { bindActionCreators } from 'redux';
 //react router imports
-import {Link, withRouter} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class UserList extends Component {
     render() {
-        let users = userList.map((user) => {
+        let users = this.props.users.map((user) => {
             return (
                 <li key={user._id} className="list-group-item" onClick={() => this.props.selectUser(user)}>
                   <Link to={`/users/${user._id}`}>{user.name}</Link>
@@ -39,4 +38,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserList));
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);

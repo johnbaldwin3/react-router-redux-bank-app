@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { USER_SELECTED, ACCOUNT_SELECTED } from '../actions/index';
+import { USER_SELECTED, ACCOUNT_SELECTED, WITHDRAW_FUNDS } from '../actions/index';
 import userList from '../data/users';
 
 const selectedUser = ( state = null, action) => {
@@ -18,10 +18,19 @@ const selectedAccount = ( state = null, action ) => {
   return state;
 }
 
+const withdrawMoney = (state = null, action ) => {
+  switch(action.type) {
+    case WITHDRAW_FUNDS:
+    return (action.account.balance - action.amount)
+  }
+  return state;
+}
+
 const rootReducer = combineReducers({
   users: userList,
   selectedUser: selectedUser,
   selectedAccount: selectedAccount,
+  withdrawMoney: withdrawMoney
 });
 
 export default rootReducer;

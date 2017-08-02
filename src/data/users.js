@@ -10,12 +10,12 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$3,260.14"
+              balance:3260.14
            },
            {
               id:2,
               accountType:"credit",
-              balance:"$1,936.46"
+              balance:1936.46
            }
         ]
      },
@@ -29,17 +29,17 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$1,285.05"
+              balance:1285.05
            },
            {
               id:1,
               accountType:"savings",
-              balance:"$3,691.11"
+              balance:3691.11
            },
            {
               id:2,
               accountType:"credit",
-              balance:"$2,694.38"
+              balance:2694.38
            }
         ]
      },
@@ -53,12 +53,12 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$1,182.32"
+              balance:1182.32
            },
            {
               id:2,
               accountType:"credit",
-              balance:"$2,349.69"
+              balance:2349.69
            }
         ]
      },
@@ -72,12 +72,12 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$1,044.08"
+              balance:1044.08
            },
            {
               id:1,
               accountType:"savings",
-              balance:"$2,825.33"
+              balance:2825.33
            }
         ]
      },
@@ -91,17 +91,17 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$2,410.46"
+              balance:2410.46
            },
            {
               id:1,
               accountType:"savings",
-              balance:"$1,646.00"
+              balance:1646.00
            },
            {
               id:2,
               accountType:"credit",
-              balance:"$1,274.82"
+              balance:1274.82
            }
         ]
      },
@@ -115,17 +115,17 @@ const userList = () => {
            {
               id:0,
               accountType:"checking",
-              balance:"$1,186.08"
+              balance:1186.08
            },
            {
               id:1,
               accountType:"savings",
-              balance:"$1,832.00"
+              balance:1832.00
            },
            {
               id:2,
               accountType:"credit",
-              balance:"$3,660.70"
+              balance:3660.70
            }
         ]
      }

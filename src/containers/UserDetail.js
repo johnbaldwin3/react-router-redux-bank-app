@@ -23,7 +23,7 @@ class UserDetail extends Component {
       return (
         <div key={account.id}>
           <Link
-            onClick={() => this.props.selectAccount(account)}
+            onClick={() => this.props.selectAccount(account.id)}
             to={`/users/${id}/${account.id}`}>{account.accountType}</Link>
         </div>
 
@@ -54,9 +54,9 @@ class UserDetail extends Component {
 }
 
 function mapStateToProps(state) {
+  const userIdx = state.users.findIndex(user => user._id === state.selectedUser);
   return {
-    user: state.selectedUser,
-    account: state.selectedAccount
+    user: state.users[userIdx]
   };
 }
 

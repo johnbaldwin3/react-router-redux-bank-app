@@ -25,9 +25,12 @@ class Transaction extends Component {
   handleWithdraw = (e) => {
     let amount = e.target.value;
     console.log(amount);
-    this.props.withdrawFunds(this.props.account, amount)
+    if (amount) {
+      this.props.withdrawFunds(amount)
+    }
     this.toggle();
   }
+
   render() {
     return (
       <div>
@@ -50,9 +53,11 @@ class Transaction extends Component {
 }
 
 function mapStateToProps(state) {
+  const userIdx = state.users.findIndex(user => user._id === state.selectedUser);
+  const accountIdx = state.users[userIdx].accounts.findIndex(account => account.id === state.selectedAccount);
   return {
-    account: state.selectedAccount,
-    user: state.selectedUser
+    account: state.users[userIdx].accounts[accountIdx],
+    user: state.users[userIdx]
   };
 }
 

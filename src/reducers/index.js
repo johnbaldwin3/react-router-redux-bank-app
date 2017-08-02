@@ -1,36 +1,50 @@
-import { combineReducers } from 'redux';
-import { USER_SELECTED, ACCOUNT_SELECTED, WITHDRAW_FUNDS } from '../actions/index';
+import {combineReducers} from 'redux';
+import {USER_SELECTED, ACCOUNT_SELECTED, WITHDRAW_FUNDS} from '../actions/index';
 import userList from '../data/users';
+import update from 'immutability-helper';
 
-const selectedUser = ( state = null, action) => {
-  switch(action.type) {
-    case USER_SELECTED:
-    return action.payload
-  }
-  return state;
+const initialState = {
+    users: userList(),
+    selectedUser: null,
+    selectedAccount: null
 }
 
-const selectedAccount = ( state = null, action ) => {
-  switch(action.type) {
-    case ACCOUNT_SELECTED:
-    return action.payload
-  }
-  return state;
+const reducer = function(state = initialState, action) {
+    switch (action.type) {
+        case USER_SELECTED:
+            return update(state, {
+                selectedUser: {
+                    $set: action.payload
+                }
+            });
+        case ACCOUNT_SELECTED:
+            return update(state, {
+                selectedAccount: {
+                    $set: action.payload
+                }
+            });
+        case WITHDRAW_FUNDS:
+            const userIdx = state.users.findIndex(user => user._id === state.selectedUser);
+            const accountIdx = state.users[userIdx].accounts.findIndex(account => account.id === state.selectedAccount);
+
+            return update(state, {
+                users: {
+                    [userIdx]: {
+                        accounts: {
+                            [accountIdx]: {
+                                balance: {
+                                    $apply: function(balance) {
+                                        return balance - action.payload
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+        default:
+            return state;
+    }
 }
 
-const withdrawMoney = (state = null, action ) => {
-  switch(action.type) {
-    case WITHDRAW_FUNDS:
-    return (action.account.balance - action.amount)
-  }
-  return state;
-}
-
-const rootReducer = combineReducers({
-  users: userList,
-  selectedUser: selectedUser,
-  selectedAccount: selectedAccount,
-  withdrawMoney: withdrawMoney
-});
-
-export default rootReducer;
+export default reducer;
